@@ -9,7 +9,7 @@
 
 namespace p4\Http\Controllers;
 
-//use p4\Http\Controllers\Controller;
+use p4\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 
@@ -30,14 +30,14 @@ class RecipeController extends Controller {
      * Responds to requests to GET /recipes/show/{id}
      */
     public function getShow() {
-        $allRecipes = DB::table('recipes')->get();
-        return view('recipes.show')->with($allRecipes);
+        $allRecipes = \p4\Recipe::all();
+        return view('recipes.show')->with('allRecipes', $allRecipes);
     }
-
+ /*
     public function getShowIndividual($recipeID) {
         return view('recipes.showIndividual')->with($recipeID);
     }
-
+*/
     /**
      * Responds to requests to GET /recipes/create
      */

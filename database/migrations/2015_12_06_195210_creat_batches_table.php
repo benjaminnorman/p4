@@ -22,7 +22,7 @@ class CreatBatchesTable extends Migration
 
             //generate the other columns for each recipe
             $table->string('batch_name');
-            $table->integer('created_by');
+            $table->integer('user_id');
             $table->date('date_completed');
             $table->integer('recipe_used');
             $table->decimal('starting_gravity');

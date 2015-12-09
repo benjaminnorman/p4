@@ -23,7 +23,7 @@ class CreateRecipesTable extends Migration
             $table->string('recipe_name');
             $table->string('honey_type');
             $table->string('yeast_type');
-            $table->integer('created_by');
+            $table->integer('user_id');
             $table->string('difficulty');
             $table->string('recipe_text');
         });

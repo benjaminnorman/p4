@@ -11,16 +11,21 @@ class BatchesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('batches')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'batch_name' => 'Great Batch 1',
-            'created_by' => 0,
-            'date_completed' => Carbon\Carbon::now()->addDay(),
-            'recipe_used' => 0,
-            'starting_gravity' => 1.100,
-            'ending_gravity' => 1.010,
-            'batch_notes' => 'This is a great batch!'
-        ]);
+        for($i=0 ; $i<=9 ; $i++){
+            $batch = new \p4\Batch();
+
+            $counter = $i;
+
+            $batch->batch_name = 'Batch Name ' . $counter;
+            $batch->user_id = $counter;
+            $batch->date_completed = Carbon\Carbon::now()->addDay($counter);
+            $batch->recipe_used = $i;
+            $batch->starting_gravity = 1.100;
+            $batch->ending_gravity = 1.01;
+            $batch->batch_notes = "This is a note about this batch";
+
+            $batch->save();
+
+        }
     }
 }
