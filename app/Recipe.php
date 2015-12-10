@@ -10,4 +10,6 @@ class Recipe extends Model
         //Recipe can have many batches
         return $this->hasMany('\p4\Batch');
     }
+
+
 }
