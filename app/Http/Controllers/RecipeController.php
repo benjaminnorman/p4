@@ -26,6 +26,7 @@ class RecipeController extends Controller {
         return view('recipes.show')->with('recipes', $recipes);
     }
 
+
     /**
      * Responds to requests to GET /recipes/show/{id}
      */
