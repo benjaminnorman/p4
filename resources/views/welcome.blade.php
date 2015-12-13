@@ -1,45 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layouts.master')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('title')
+    Home
+@stop
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('head')
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+@stop
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+@section('content')
+    <div align="center">
+        <h1>Welcome to Kvasir's Wisdom!</h1>
+        Please login to see your recipes and batches, or browse the database using the tabs!
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+    </div>
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Kvasir's Wisdom</div>
-            </div>
-        </div>
-    </body>
-</html>
+@stop
+
+@section('body')
+    <script src="/js/recipes/show.js"></script>
+@stop

@@ -17,12 +17,44 @@ Route::get('/', function () {
 //Recipe Routes
 Route::get('/recipes/create', 'RecipeController@getCreate');
 Route::post('/recipes/create', 'RecipeController@postCreate');
+
 Route::get('/recipes/show', 'RecipeController@getShow');
+Route::get('/recipes/myrecipes', 'RecipeController@getUsersRecipes');
+Route::get('/recipes/show/{id?}', 'RecipeController@getRecipe');
+
+Route::get('/recipes/delete/{id?}', 'RecipeController@getDoDelete');
+Route::get('/recipes/confirm-delete/{id}', 'RecipeController@getConfirmDelete');
+
 
 //Batch Routes
 Route::get('/batches/create', 'BatchController@getCreate');
 Route::post('/batches/create', 'BatchController@postCreate');
 Route::get('/batches/show', 'BatchController@getShow');
+
+
+//Authentication Routes
+# Show login form
+Route::get('/login', 'Auth\AuthController@getLogin');
+
+# Process login form
+Route::post('/login', 'Auth\AuthController@postLogin');
+
+# Process logout
+Route::get('/logout', 'Auth\AuthController@getLogout');
+
+# Show registration form
+Route::get('/register', 'Auth\AuthController@getRegister');
+
+# Process registration form
+Route::post('/register', 'Auth\AuthController@postRegister');
+
+
+
+
+
+
+
+
 
 //Test route for database connection
 Route::get('/debug', function() {

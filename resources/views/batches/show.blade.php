@@ -5,7 +5,7 @@
 @stop
 
 @section('head')
-    GooblegobbleHead
+
 @stop
 
 @section('content')
@@ -17,5 +17,5 @@
 @stop
 
 @section('body')
-    GoogbleGobbleBody
+
 @stop

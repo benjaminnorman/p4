@@ -1,21 +1,31 @@
 @extends('layouts.master')
 
 @section('title')
-    Show Recipes
+    Show Recipe
 @stop
 
 @section('head')
-    Gooblegobble
+
 @stop
 
 @section('content')
+    <h1>Showing Recipe</h1>
+    @foreach($recipes as $recipe)
+        Recipe Name: {{ $recipe['recipe_name'] }}
+        <br>
+        Honey Type: {{ $recipe['honey_type'] }}
+        <br>
+        Yeast Type: {{ $recipe['yeast_type'] }}
+        <br>
+        Recipe Text: {{ $recipe['recipe_text'] }}
+        <br>
+        <br>
+    @endforeach
 
-    @if($recipeID)
-        <h1>Show Recipe: {{ $recipeID }}</h1>
+    <h4>Edit Recipe</h4>
 
-    @else
-        <h1>No Recipe Available</h1>
-    @endif
+    <h4><a href="/recipes/confirm-delete/{{$recipe->id}}">Delete Recipe</a></h4>
+
 @stop
 
 @section('body')

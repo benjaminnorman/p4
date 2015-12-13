@@ -8,9 +8,11 @@
 
 
 namespace p4\Http\Controllers;
+
+use Illuminate\Support\Facades\Auth;
 use p4\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use p4\Http\Requests\Request;
+
+use Illuminate\Http\Request;
 
 class RecipeController extends Controller {
 
@@ -19,20 +21,27 @@ class RecipeController extends Controller {
     }
 
     /**
-     * Responds to requests to GET /recipes
+     * Responds to requests to GET /recipes/myrecipes
      */
-    public function getIndex(Request $request) {
+    public function getUsersRecipes(Request $request) {
         $recipes = \p4\Recipe::where('user_id', '=', Auth::id())->get();
         return view('recipes.show')->with('recipes', $recipes);
     }
 
-
     /**
      * Responds to requests to GET /recipes/show/{id}
      */
+    public function getRecipe($id) {
+        $recipes = \p4\Recipe::where('id', '=', $id)->get();
+        return view('recipes.showIndividual')->with('recipes', $recipes);
+    }
+
+    /**
+     * Responds to requests to GET /recipes/show
+     */
     public function getShow() {
-        $allRecipes = \p4\Recipe::all();
-        return view('recipes.show')->with('allRecipes', $allRecipes);
+        $recipes = \p4\Recipe::all();
+        return view('recipes.show')->with('recipes', $recipes);
     }
 
 
@@ -45,9 +54,50 @@ class RecipeController extends Controller {
     }
 
     /**
-     * Responds to requests to POST /recipe/create
+     * Responds to requests to POST /recipes/create
      */
-    public function postCreate($recipeID = null) {
-        return view('recipes.show')->with('recipeID', $recipeID);
+    public function postCreate(Request $request) {
+
+        //TODO: add validation here
+        $recipe = new \p4\Recipe();
+        $recipe->recipe_name = $request->recipe_name;
+        $recipe->honey_type = $request->honey_type;
+        $recipe->user_id = Auth::id();
+        $recipe->yeast_type = $request->yeast_type;
+        $recipe->difficulty = $request->difficulty;
+        $recipe->recipe_text = $request->recipe_text;
+        $recipe->save();
+
+        //\Session::flash('flash_message', 'Your recipe has been added!');
+
+        return redirect('/recipes/show');
     }
+
+    /**
+     * Responds to requests to get /recipes/confirm-delete/{id}
+     */
+    public function getConfirmDelete($id){
+        $recipe = \p4\Recipe::find($id);
+
+        return view('recipes.delete')->with('recipe', $recipe);
+    }
+
+    /**
+     * Responds to requests to get /recipes/delete/{id}
+     */
+    public function getDoDelete($id){
+        $recipe = \p4\Recipe::find($id);
+
+        if(is_null($recipe)) {
+            //\Session::flash('flash_message','Book not found.');
+            return redirect('\recipes/show');
+        }
+
+        $recipe->delete();
+
+        //\Session::flash('flash_message',$recipe->recipe_name.' was deleted.');
+        return redirect('/recipes/show');
+
+    }
+
 }
