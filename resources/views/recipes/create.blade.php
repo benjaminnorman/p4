@@ -46,9 +46,9 @@
             <label>Difficulty: <br>
                 <select name="difficulty" class="form-control">
                     <option value="">Select...</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Meadium</option>
-                    <option value="hard">Hard</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Meadium">Meadium</option>
+                    <option value="Hard">Hard</option>
                 </select>
             </label>
         </div>

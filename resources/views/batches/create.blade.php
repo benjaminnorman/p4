@@ -10,12 +10,22 @@
 
 @section('content')
 <div class="form-group" align="center">
-    <form method='POST' action=''>
-        <br><br>
-        <div class="alert alert-info"><h3>Enter Batch Info: </h3></div>
-        <label>Batch Name: <br>
-            <input type="text" name="batch_name" class="form-control">
-        </label>
+    <form method='POST' action='/batches/create'>
+
+        <div>
+            <label>Batch Name: <br>
+                <input
+                    type="text"
+                    name="batch_name"
+                    class="form-control"
+                    id="batch_name">
+            </label>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Add Batch</button>
+        </div>
+
     </form>
 </div>
 @stop

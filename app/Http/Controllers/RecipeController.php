@@ -89,14 +89,44 @@ class RecipeController extends Controller {
         $recipe = \p4\Recipe::find($id);
 
         if(is_null($recipe)) {
-            //\Session::flash('flash_message','Book not found.');
+            //TODO:: \Session::flash('flash_message','Book not found.');
             return redirect('\recipes/show');
         }
 
-        $recipe->delete();
+        //If the logged in user owns the recipe they can delete it
+        if(Auth::id() == $recipe->user_id){
+            $recipe->delete();
+            //\Session::flash('flash_message',$recipe->recipe_name.' was deleted.');
+            return redirect('/recipes/show');
+        }
+        else{
+            //\Session::flash('flash_message',$recipe->recipe_name.' does not belong to you. You cannot delete it.');
+        }
+    }
 
-        //\Session::flash('flash_message',$recipe->recipe_name.' was deleted.');
-        return redirect('/recipes/show');
+    public function getEdit($id = null){
+        $recipe = \p4\Recipe::find($id);
+
+        return view('recipes.edit')->with('recipe', $recipe);
+    }
+
+    public function postEdit(Request $request){
+        $recipe = \p4\Recipe::find($request->id);
+
+        if(Auth::id() == $recipe->user_id){
+            $recipe->recipe_name = $request->recipe_name;
+            $recipe->honey_type = $request->honey_type;
+            $recipe->yeast_type = $request->yeast_type;
+            $recipe->difficulty = $request->difficulty;
+            $recipe->recipe_text = $request->recipe_text;
+
+            $recipe->save();
+
+            return redirect('/recipes/show/'.$recipe->id);
+        }
+        else{
+            //\Session::flash('flash_message',$recipe->recipe_name.' does not belong to you. You cannot edit it.');
+        }
 
     }
 

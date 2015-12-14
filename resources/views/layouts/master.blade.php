@@ -32,7 +32,7 @@
 <header>
     @if(Auth::check())
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href='/'>Home</a></li>
+            <li role="presentation"><a href='/'>Home</a></li>
             <li role="presentation"><a href='/recipes/show'>All Recipes</a></li>
             <li role="presentation"><a href='/batches/show'>All Batches</a></li>
             <li role="presentation"><a href="/recipes/myrecipes">My Recipes</a></li>
@@ -43,7 +43,7 @@
         </ul>
     @else
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/">Home</a></li>
             <li role="presentation"><a href="/recipes/show">Recipes</a></li>
             <li role="presentation"><a href="/batches/show">Batches</a></li>
             <li role="presentation"><a href="/login">Login/Register</a></li>

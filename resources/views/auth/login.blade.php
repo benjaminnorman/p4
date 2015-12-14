@@ -26,9 +26,9 @@
         </div>
 
         <div class='form-group'>
-            <label for='email' class="col-sm-4 control-label">Password</label>
+            <label for='password' class="col-sm-4 control-label">Password</label>
             <div class="col-sm-5">
-                <input type='text' name='password' id='password' class="form-control" value='{{ old('password') }}'>
+                <input type='password' name='password' id='password' class="form-control" value='{{ old('password') }}'>
             </div>
         </div>
 
