@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Delete Recipe
+    Delete Batch
 @stop
 
 @section('content')
 
-    <h1>Delete Recipe</h1>
+    <h1>Delete Batch</h1>
 
-    <p>Are you sure you want to delete <em>{{$recipe->recipe_name}}</em>?</p>
+    <p>Are you sure you want to delete <em>{{$batch->batch_name}}</em>?</p>
 
-    <p><a href='/recipes/delete/{{$recipe->id}}'>Yes...</a></p>
+    <p><a href='/batches/delete/{{$batch->id}}'>Yes...</a></p>
 
 @stop

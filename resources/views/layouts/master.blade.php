@@ -2,14 +2,16 @@
 <html>
 <head>
     <div align="center">
-        <br>
+        <h1>
+        <br>Kvasir's
         <img
                 src='https://a248.e.akamai.net/f/1015/2073/5m/blogs-images.forbes.com/jonentine/files/2014/05/bee_pollen11.jpg'
                 style='width:200px'
                 alt="Kvasir's Wisdom Logo"
                 class='img-rounded'
                 >
-        <br>
+        Wisdom
+            </h1>
         <br>
     </div>
 

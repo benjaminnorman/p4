@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//============================================================
 //Recipe Routes
 Route::get('/recipes/create', 'RecipeController@getCreate');
 Route::post('/recipes/create', 'RecipeController@postCreate');
@@ -28,6 +30,7 @@ Route::get('/recipes/confirm-delete/{id}', 'RecipeController@getConfirmDelete');
 Route::get('recipes/edit/{id?}', 'RecipeController@getEdit');
 Route::post('recipes/edit', 'RecipeController@postEdit');
 
+//=============================================================
 //Batch Routes
 Route::get('/batches/create', 'BatchController@getCreate');
 Route::post('/batches/create', 'BatchController@postCreate');
@@ -42,6 +45,7 @@ Route::get('/batches/confirm-delete/{id}', 'BatchController@getConfirmDelete');
 Route::get('batches/edit/{id?}', 'BatchController@getEdit');
 Route::post('batches/edit', 'BatchController@postEdit');
 
+//=============================================================
 //Authentication Routes
 # Show login form
 Route::get('/login', 'Auth\AuthController@getLogin');
@@ -59,13 +63,7 @@ Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
 
-
-
-
-
-
-
-
+//==============================================================
 //Test route for database connection
 Route::get('/debug', function() {
     echo '<pre>';

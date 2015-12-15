@@ -24,7 +24,11 @@ class CreatBatchesTable extends Migration
             $table->string('batch_name');
             $table->integer('user_id');
             $table->date('date_completed');
-            $table->integer('recipe_used');
+
+            //this will be the foreign key
+            $table->integer('recipe_used')->unsigned();
+            $table->foreign('recipe_used')->references('id')->on('recipes');
+
             $table->decimal('starting_gravity');
             $table->decimal('ending_gravity');
             $table->string('batch_notes');

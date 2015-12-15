@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Show Recipe
+    Show Batch
 @stop
 
 @section('head')
@@ -10,36 +10,39 @@
 
 @section('content')
 
-    @foreach($recipes as $recipe)
-        <h1>{{$recipe['recipe_name']}}</h1>
-        Recipe Name: {{ $recipe['recipe_name'] }}
+    @foreach($batches as $batch)
+        <h1>{{$batch['batch_name']}}</h1>
+        Batch Name: {{ $batch['batch_name'] }}
         <br>
-        Honey Type: {{ $recipe['honey_type'] }}
+
+        Recipe Used: <a href="/recipes/show/{{ $batch['recipe_used'] }}">{{ $batch['recipe_used'] }}</a>
         <br>
-        Yeast Type: {{ $recipe['yeast_type'] }}
+        Starting Gravity: {{ $batch['starting_gravity'] }}
         <br>
-        Difficulty: {{ $recipe['difficulty'] }}
+        Ending Gravity: {{ $batch['ending_gravity'] }}
+        <br>
+        Date Completed: {{ $batch['date_completed'] }}
         <br>
         <br>
         <div class='form-group'>
-            <label for='recipe_text'>* Recipe Text:</label>
+            <label for='batch_notes'>* Batch Notes:</label>
                 <textarea
                         style="height: 250px; width: 500px;"
-                        name="recipe_text"
+                        name="batch_notes"
                         class="form-control"
-                        id="recipe_text" disabled>
-                    {{$recipe->recipe_text}}
+                        id="batch_notes" disabled>
+                    {{$batch->batch_notes}}
                 </textarea>
         </div>
         <br>
     @endforeach
 
-    <h4><a href="/recipes/edit/{{$recipe->id}}">Edit Recipe</a></h4>
+    <h4><a href="/batches/edit/{{$batch->id}}">Edit Batch</a></h4>
 
-    <h4><a href="/recipes/confirm-delete/{{$recipe->id}}">Delete Recipe</a></h4>
+    <h4><a href="/batches/confirm-delete/{{$batch->id}}">Delete Batch</a></h4>
 
 @stop
 
 @section('body')
-    <script src="/js/recipes/show.js"></script>
+    <script src="/js/batches/show.js"></script>
 @stop

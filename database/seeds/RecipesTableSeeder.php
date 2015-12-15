@@ -12,7 +12,7 @@ class RecipesTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<10; $i++){
+        for($i=1; $i<10; $i++){
             $recipe = new \p4\Recipe();
 
             //used for seeding w/ incrementing number for unique entries

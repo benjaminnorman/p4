@@ -9,74 +9,84 @@
 
     <h1>Edit Recipe</h1>
 
-    <form method='POST' action='/recipes/edit'>
+    <form method='POST' action='/batches/edit'>
 
         <input type='hidden' value='{{ csrf_token() }}' name='_token'>
 
-        <input type='hidden' name='id' value='{{ $recipe->id }}'>
+        <input type='hidden' name='id' value='{{ $batch->id }}'>
 
         <div class="form-group">
-            <label>Recipe ID:</label>
+            <label>Batch ID:</label>
             <label for="id"></label>
             <input
                 type="text"
                 id="id"
                 name="id"
-                value="{{$recipe->id}}"
+                value="{{$batch->id}}"
                 disabled>
         </div>
 
         <div class='form-group'>
-            <label>* Recipe Name:</label>
-            <label for="recipe_name"></label>
+            <label>* Batch Name:</label>
+            <label for="batch_name"></label>
             <input
                     type='text'
-                    id='recipe_name'
-                    name='recipe_name'
-                    value='{{$recipe->recipe_name}}'
-                    >
-        </div>
-
-        <div class='form-group'>
-            <label for='honey_type'>* Honey Type:</label>
-            <input
-                    type='text'
-                    id='honey_type'
-                    name='honey_type'
-                    value='{{$recipe->honey_type}}'
-                    >
-        </div>
-
-        <div class='form-group'>
-            <label for='yeast_type'>* Yeast Type:</label>
-            <input
-                    type='text'
-                    id='yeast_type'
-                    name='yeast_type'
-                    value='{{$recipe->yeast_type}}'
+                    id='batch_name'
+                    name='batch_name'
+                    value='{{$batch->batch_name}}'
                     >
         </div>
 
         <div class="form-group">
-            <label for="difficulty">* Difficulty</label>
+            <label for="recipe_used">Recipe Used</label>
             <label>
-                <select name="difficulty" class="form-control">
-                    <option selected="selected">{{$recipe->difficulty}}</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Meadium">Meadium</option>
-                    <option value="Hard">Hard</option>
+                <select name="difficulty" class="form-control" disabled>
+                    <option selected="selected">Recipe {{$batch->recipe_used}}</option>
                 </select>
             </label>
         </div>
 
         <div class='form-group'>
-            <label for='recipe_text'>* Recipe Text:</label>
+            <label>* Starting Gravity:</label>
+            <label for="starting_gravity"></label>
+            <input
+                    type='number'
+                    id='starting_gravity'
+                    name='starting_gravity'
+                    value='{{$batch->starting_gravity}}'
+                    >
+        </div>
+
+        <div class='form-group'>
+            <label>* Ending Gravity:</label>
+            <label for="ending_gravity"></label>
+            <input
+                    type='number'
+                    id='ending_gravity'
+                    name='ending_gravity'
+                    value='{{$batch->ending_gravity}}'
+                    >
+        </div>
+
+        <div>
+            <label>Date Completed: <br>
+                <input
+                        type="date"
+                        name="date_completed"
+                        class="form-control"
+                        id="date_completed"
+                        value="{{$batch->date_completed}}">
+            </label>
+        </div>
+
+        <div class='form-group'>
+            <label for='batch_notes'>* Batch Notes:</label>
                 <textarea
                         style="height: 250px; width: 500px;"
-                        name="recipe_text"
+                        name="batch_notes"
                         class="form-control"
-                        id="recipe_text">
-                    {{$recipe->recipe_text}}
+                        id="batch_notes">
+                    {{$batch->batch_notes}}
                 </textarea>
         </div>
 

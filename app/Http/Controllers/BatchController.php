@@ -17,7 +17,7 @@ class BatchController extends Controller {
      * Responds to requests to GET /batches/mybatches
      */
     public function getUsersBatches(Request $request) {
-        $batchess = \p4\Batch::where('user_id', '=', Auth::id())->get();
+        $batches = \p4\Batch::where('user_id', '=', Auth::id())->get();
         return view('batches.show')->with('batches', $batches);
     }
 
@@ -42,8 +42,11 @@ class BatchController extends Controller {
      * Responds to requests to GET /batches/create
      */
     public function getCreate() {
+        //get list of recipes currently in the database for selection by the user
+        $recipes = \p4\Recipe::all();
+
         //return 'Form to create a new batch';
-        return view('batches.create');
+        return view('batches.create')->with('recipes', $recipes);
     }
 
     /**
@@ -94,6 +97,7 @@ class BatchController extends Controller {
             return redirect('/batches/show');
         }
         else{
+            echo 'no dice grandma';
             //\Session::flash('flash_message',$batch->batch_name.' does not belong to you. You cannot delete it.');
         }
     }
@@ -120,6 +124,7 @@ class BatchController extends Controller {
             return redirect('/batches/show/'.$batch->id);
         }
         else{
+            echo 'No dice grandma';
             //\Session::flash('flash_message',$batch->batch_name.' does not belong to you. You cannot edit it.');
         }
 

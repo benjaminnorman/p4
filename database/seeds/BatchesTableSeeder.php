@@ -11,7 +11,7 @@ class BatchesTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0 ; $i<=9 ; $i++){
+        for($i=1 ; $i<=9 ; $i++){
             $batch = new \p4\Batch();
 
             $counter = $i;
