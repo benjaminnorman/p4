@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Create a Recipe
+Create Recipe
 @stop
 
 @section('head')
@@ -59,8 +59,7 @@
                         style="height: 250px; width: 500px;"
                         name="recipe_text"
                         class="form-control"
-                        id="recipe_text">
-                </textarea>
+                        id="recipe_text"></textarea>
             </label>
         </div>
 

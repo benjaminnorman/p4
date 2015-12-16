@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Create a Recipe
+    Create a Batch
 @stop
 
 @section('head')
@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="form-group" align="center">
-        <form method='POST' action='/batch/create'>
+        <form method='POST' action='/batches/create'>
             <div>
                 <label>Batch Name: <br>
                     <input
@@ -72,8 +72,7 @@
                         style="height: 250px; width: 500px;"
                         name="batch_notes"
                         class="form-control"
-                        id="batch_notes">
-                </textarea>
+                        id="batch_notes"></textarea>
                 </label>
             </div>
 

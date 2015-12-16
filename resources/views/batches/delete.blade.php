@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Delete Batch
+    Delete a Batch
 @stop
 
 @section('content')

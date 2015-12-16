@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Edit Recipe
+    Edit Batch
 @stop
 
 
@@ -85,9 +85,7 @@
                         style="height: 250px; width: 500px;"
                         name="batch_notes"
                         class="form-control"
-                        id="batch_notes">
-                    {{$batch->batch_notes}}
-                </textarea>
+                        id="batch_notes">{{$batch->batch_notes}}</textarea>
         </div>
 
         <br>

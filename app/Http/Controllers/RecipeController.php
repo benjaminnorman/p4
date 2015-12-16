@@ -32,8 +32,8 @@ class RecipeController extends Controller {
      * Responds to requests to GET /recipes/show/{id}
      */
     public function getRecipe($id) {
-        $recipes = \p4\Recipe::where('id', '=', $id)->get();
-        return view('recipes.showIndividual')->with('recipes', $recipes);
+        $recipe = \p4\Recipe::where('id', '=', $id)->first();
+        return view('recipes.showIndividual')->with('recipe', $recipe);
     }
 
     /**
@@ -68,7 +68,7 @@ class RecipeController extends Controller {
         $recipe->recipe_text = $request->recipe_text;
         $recipe->save();
 
-        //\Session::flash('flash_message', 'Your recipe has been added!');
+        \Session::flash('flash_message', 'Your recipe for '.$recipe->recipe_name.', has been added!');
 
         return redirect('/recipes/show');
     }
@@ -89,18 +89,18 @@ class RecipeController extends Controller {
         $recipe = \p4\Recipe::find($id);
 
         if(is_null($recipe)) {
-            //TODO:: \Session::flash('flash_message','Book not found.');
+            \Session::flash('flash_message','Recipe '.$recipe->recipe_name.' not found.');
             return redirect('\recipes/show');
         }
 
         //If the logged in user owns the recipe they can delete it
         if(Auth::id() == $recipe->user_id){
             $recipe->delete();
-            //\Session::flash('flash_message',$recipe->recipe_name.' was deleted.');
+            \Session::flash('flash_message','The recipe '.$recipe->recipe_name.' was deleted.');
             return redirect('/recipes/show');
         }
         else{
-            //\Session::flash('flash_message',$recipe->recipe_name.' does not belong to you. You cannot delete it.');
+            \Session::flash('flash_message','The recipe '.$recipe->recipe_name.' does not belong to you. You cannot delete it.');
         }
     }
 
@@ -125,7 +125,7 @@ class RecipeController extends Controller {
             return redirect('/recipes/show/'.$recipe->id);
         }
         else{
-            //\Session::flash('flash_message',$recipe->recipe_name.' does not belong to you. You cannot edit it.');
+            \Session::flash('flash_message','The recipe' .$recipe->recipe_name.' does not belong to you. You cannot edit it.');
         }
 
     }

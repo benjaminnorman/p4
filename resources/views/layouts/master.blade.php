@@ -1,6 +1,13 @@
 <!doctype html>
 <html>
 <head>
+    @if(\Session::has('flash_message'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ \Session::get('flash_message')}}
+        </div>
+    @endif
+
     <div align="center">
         <h1>
         <br>Kvasir's
@@ -19,7 +26,7 @@
         {{-- Yield the title if it exists, otherwise default to 'Kvasir's Wisdom' --}}
         @yield('title',"Kvasir's Wisdom")
     </title>
-    <h2 align='center' class="bg-primary">@yield('title',"Kvasir's Wisdom")</h2>
+
     <meta charset='utf-8'>
     <link href="/css/kvasirswisdom.css" type='text/css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -39,10 +46,11 @@
             <li role="presentation"><a href='/batches/show'>All Batches</a></li>
             <li role="presentation"><a href="/recipes/myrecipes">My Recipes</a></li>
             <li role="presentation"><a href="/batches/mybatches">My Batches</a></li>
-            <li role="presentation"><a href='/logout'>Logout</a></li>
+            <li role="presentation"><a href='/logout'>Logout (Signed in as <strong>{{ Auth::user()->name }})</strong></a></li></p>
             <br>
             <br>
         </ul>
+
     @else
         <ul class="nav nav-tabs">
             <li role="presentation"><a href="/">Home</a></li>
@@ -53,7 +61,7 @@
             <br>
         </ul>
     @endif
-
+        <h2 align='center' >@yield('title',"Kvasir's Wisdom")</h2>
 
 </header>
 

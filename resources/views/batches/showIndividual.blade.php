@@ -10,12 +10,19 @@
 
 @section('content')
 
-    @foreach($batches as $batch)
+    @if(empty($recipe))
+        That batch does not exist.
+        <br>
+        It may have been deleted, or never existed at all.
+        <br>
+        Why not <a href="/batches/create"><strong>create one</strong>?</a>
+
+    @else
         <h1>{{$batch['batch_name']}}</h1>
         Batch Name: {{ $batch['batch_name'] }}
         <br>
 
-        Recipe Used: <a href="/recipes/show/{{ $batch['recipe_used'] }}">{{ $batch['recipe_used'] }}</a>
+        <a href="/recipes/show/{{ $batch['recipe_used'] }}">Recipe Used: {{ $batch['recipe_used'] }}</a>
         <br>
         Starting Gravity: {{ $batch['starting_gravity'] }}
         <br>
@@ -30,17 +37,16 @@
                         style="height: 250px; width: 500px;"
                         name="batch_notes"
                         class="form-control"
-                        id="batch_notes" disabled>
-                    {{$batch->batch_notes}}
-                </textarea>
+                        id="batch_notes" disabled>{{$batch->batch_notes}}</textarea>
         </div>
         <br>
-    @endforeach
 
-    <h4><a href="/batches/edit/{{$batch->id}}">Edit Batch</a></h4>
+        @if(Auth::id() == $batch->user_id)
+        <h4><a href="/batches/edit/{{$batch->id}}">Edit Batch</a></h4>
 
-    <h4><a href="/batches/confirm-delete/{{$batch->id}}">Delete Batch</a></h4>
-
+        <h4><a href="/batches/confirm-delete/{{$batch->id}}">Delete Batch</a></h4>
+        @endif
+    @endif
 @stop
 
 @section('body')

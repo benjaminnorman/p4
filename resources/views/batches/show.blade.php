@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Show Batches
+
 @stop
 
 @section('head')
@@ -9,9 +9,10 @@
 @stop
 
 @section('content')
-    <h1>Showing Batches</h1>
+    <h2>Batches</h2>
     @if(Auth::check())
-        <div class="alert alert-info" role="alert">
+
+        <div class="alert alert-success" role="alert">
             <a href="/batches/create" class="alert-link"><u>Click here to add a new batch</u></a>
         </div>
     @else
@@ -20,12 +21,16 @@
         </div>
     @endif
 
+    <div class="well">
+
     @foreach($batches as $batch)
 
         <a href="/batches/show/{{ $batch->id }}">{{ $batch['batch_name'] }}</a>
         <br>
         <br>
     @endforeach
+    </div>
+
 @stop
 
 @section('body')

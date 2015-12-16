@@ -65,7 +65,7 @@ class BatchController extends Controller {
         $batch->batch_notes = $request->batch_notes;
         $batch->save();
 
-        //\Session::flash('flash_message', 'Your batch has been added!');
+        \Session::flash('flash_message', 'Your batch has been added!');
 
         return redirect('/batches/show');
     }
@@ -93,12 +93,13 @@ class BatchController extends Controller {
         //If the logged in user owns the batch they can delete it
         if(Auth::id() == $batch->user_id){
             $batch->delete();
-            //\Session::flash('flash_message',$batch->batch_name.' was deleted.');
+            \Session::flash('flash_message',$batch->batch_name.' was deleted.');
             return redirect('/batches/show');
         }
         else{
-            echo 'no dice grandma';
-            //\Session::flash('flash_message',$batch->batch_name.' does not belong to you. You cannot delete it.');
+            echo 'no dice grandma - getDoDelete';
+            \Session::flash('flash_message',$batch->batch_name.' does not belong to you. You cannot delete it.');
+            return redirect('/batches/show');
         }
     }
 
@@ -114,18 +115,19 @@ class BatchController extends Controller {
         if(Auth::id() == $batch->user_id){
             $batch->batch_name = $request->batch_name;
             $batch->date_completed = $request->date_completed;
-            $batch->recipe_used = $request->recipe_used;
             $batch->starting_gravity = $request->starting_gravity;
             $batch->ending_gravity = $request->ending_gravity;
             $batch->batch_notes = $request->batch_notes;
 
             $batch->save();
 
+            \Session::flash('flash_message', $batch->batch_name.' has been successfully edited!');
+
             return redirect('/batches/show/'.$batch->id);
         }
         else{
-            echo 'No dice grandma';
-            //\Session::flash('flash_message',$batch->batch_name.' does not belong to you. You cannot edit it.');
+            echo 'No dice grandma - postEdit';
+            \Session::flash('flash_message',$batch->batch_name.' does not belong to you. You cannot edit it.');
         }
 
     }
