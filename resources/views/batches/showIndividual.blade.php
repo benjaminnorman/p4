@@ -10,7 +10,7 @@
 
 @section('content')
 
-    @if(empty($recipe))
+    @if(empty($batch))
         That batch does not exist.
         <br>
         It may have been deleted, or never existed at all.

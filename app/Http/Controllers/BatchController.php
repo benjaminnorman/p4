@@ -25,8 +25,8 @@ class BatchController extends Controller {
      * Responds to requests to GET /batches/show/{id}
      */
     public function getBatch($id) {
-        $batches = \p4\Batch::where('id', '=', $id)->get();
-        return view('batches.showIndividual')->with('batches', $batches);
+        $batch = \p4\Batch::where('id', '=', $id)->first();
+        return view('batches.showIndividual')->with('batch', $batch);
     }
 
     /**
@@ -41,12 +41,19 @@ class BatchController extends Controller {
     /**
      * Responds to requests to GET /batches/create
      */
-    public function getCreate() {
+    public function getCreate($incomingRecipeID = null) {
         //get list of recipes currently in the database for selection by the user
         $recipes = \p4\Recipe::all();
 
-        //return 'Form to create a new batch';
-        return view('batches.create')->with('recipes', $recipes);
+        if($incomingRecipeID != null){
+            $recipeLookup = \p4\Recipe::where('id', '=', $incomingRecipeID)->get();
+            //return 'THIS IS THE INCOMING RECIPE: '.$recipeLookup;
+            return view('batches.create')->with('recipes', $recipeLookup);
+        }
+        else{
+            //return 'Form to create a new batch';
+            return view('batches.create')->with('recipes', $recipes);
+        }
     }
 
     /**
@@ -54,7 +61,6 @@ class BatchController extends Controller {
      */
     public function postCreate(Request $request) {
 
-        //TODO: add validation here
         $batch = new \p4\Batch();
         $batch->batch_name = $request->batch_name;
         $batch->date_completed = $request->date_completed;

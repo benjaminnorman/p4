@@ -24,14 +24,17 @@
             <div>
                 <label>Recipe Used: <br>
                     <select name="recipe_used" class="form-control">
-                        <option value="">Select...</option>
 
-                        @foreach($recipes as $recipe)
-
-                            <option value="{{ $recipe->id }}">Recipe {{ $recipe->id }}:  {{ $recipe->recipe_name }}</option>
-
-                        @endforeach
-
+                        @if(count($recipes)<=1)
+                            @foreach($recipes as $recipe)
+                                <option value="{{ $recipe->id }}">Recipe {{ $recipe->id }}:  {{ $recipe->recipe_name }}</option>
+                            @endforeach
+                        @else
+                            <option value="">Select...</option>
+                            @foreach($recipes as $recipe)
+                                <option value="{{ $recipe->id }}">Recipe {{ $recipe->id }}:  {{ $recipe->recipe_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </label>
             </div>

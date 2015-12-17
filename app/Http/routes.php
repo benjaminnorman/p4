@@ -17,33 +17,48 @@ Route::get('/', function () {
 
 //============================================================
 //Recipe Routes
-Route::get('/recipes/create', 'RecipeController@getCreate');
-Route::post('/recipes/create', 'RecipeController@postCreate');
 
+
+Route::group(['middleware' => 'auth'], function(){
+
+    Route::get('/recipes/create', 'RecipeController@getCreate');
+    Route::post('/recipes/create', 'RecipeController@postCreate');
+
+    Route::get('/recipes/myrecipes', 'RecipeController@getUsersRecipes');
+
+    Route::get('/recipes/delete/{id?}', 'RecipeController@getDoDelete');
+    Route::get('/recipes/confirm-delete/{id}', 'RecipeController@getConfirmDelete');
+
+    Route::get('recipes/edit/{id?}', 'RecipeController@getEdit');
+    Route::post('recipes/edit', 'RecipeController@postEdit');
+
+});
 Route::get('/recipes/show', 'RecipeController@getShow');
-Route::get('/recipes/myrecipes', 'RecipeController@getUsersRecipes');
 Route::get('/recipes/show/{id?}', 'RecipeController@getRecipe');
 
-Route::get('/recipes/delete/{id?}', 'RecipeController@getDoDelete');
-Route::get('/recipes/confirm-delete/{id}', 'RecipeController@getConfirmDelete');
 
-Route::get('recipes/edit/{id?}', 'RecipeController@getEdit');
-Route::post('recipes/edit', 'RecipeController@postEdit');
 
 //=============================================================
 //Batch Routes
-Route::get('/batches/create', 'BatchController@getCreate');
-Route::post('/batches/create', 'BatchController@postCreate');
 
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/batches/create', 'BatchController@getCreate');
+    Route::post('/batches/create', 'BatchController@postCreate');
+    Route::get('/batches/create/{id?}', 'BatchController@getCreate');
+
+    Route::get('/batches/mybatches', 'BatchController@getUsersBatches');
+
+    Route::get('/batches/delete/{id?}', 'BatchController@getDoDelete');
+    Route::get('/batches/confirm-delete/{id}', 'BatchController@getConfirmDelete');
+
+    Route::get('batches/edit/{id?}', 'BatchController@getEdit');
+    Route::post('batches/edit', 'BatchController@postEdit');
+
+});
 Route::get('/batches/show', 'BatchController@getShow');
-Route::get('/batches/mybatches', 'BatchController@getUsersBatches');
 Route::get('/batches/show/{id?}', 'BatchController@getBatch');
 
-Route::get('/batches/delete/{id?}', 'BatchController@getDoDelete');
-Route::get('/batches/confirm-delete/{id}', 'BatchController@getConfirmDelete');
-
-Route::get('batches/edit/{id?}', 'BatchController@getEdit');
-Route::post('batches/edit', 'BatchController@postEdit');
 
 //=============================================================
 //Authentication Routes

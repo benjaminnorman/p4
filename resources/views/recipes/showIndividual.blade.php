@@ -34,11 +34,10 @@
                         style="height: 250px; width: 500px;"
                         name="recipe_text"
                         class="form-control"
-                        id="recipe_text" disabled>
-                        {{$recipe->recipe_text}}
-                    </textarea>
+                        id="recipe_text" disabled>{{$recipe->recipe_text}}</textarea>
             </div>
             <br>
+            <h4><a href="/batches/create/{{$recipe->id}}">Create a batch with this recipe!</a></h4>
 
         @if(Auth::id() == $recipe->user_id)
             <h4><a href="/recipes/edit/{{$recipe->id}}">Edit Recipe</a></h4>

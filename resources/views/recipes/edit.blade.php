@@ -6,9 +6,6 @@
 
 
 @section('content')
-
-    <h1>Edit Recipe</h1>
-
     <form method='POST' action='/recipes/edit'>
 
         <input type='hidden' value='{{ csrf_token() }}' name='_token'>
