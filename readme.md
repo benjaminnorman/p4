@@ -12,7 +12,7 @@ The live Project one can be found here:
 [Live Project 4](http://p4.benorman.com)
 
 The video presentation for this project can be found here:
-[Project 4 Video]()
+[Project 4 Video](https://youtu.be/1UPW5NnSioI)
 
 ###Instructions
 When first visiting the site, it is recommended to create an account via the 'Login/Register' button in the navigation bar. After registering and logging in, a user can create recipes and batches.
